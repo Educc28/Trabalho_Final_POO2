@@ -1,6 +1,8 @@
 import json
 from tkinter import *
-
+from funcionarios.funcionario import Funcionario
+from admin.administrador import Administrador
+from admin.menuAdmin import MenuAdmin
 
 global dadosRoupas
 global dadosUsuario
@@ -11,17 +13,17 @@ dadosUsuarios = []
 
 def login_text():  # Função referente ao texto que será retornado quando um usuário tentar fazer login
     print("Por favor, faça o login.")
-    temp_usuario = {'username': '', 'password': ''}
-    temp_usuario['username'] = input("Nome de usuário: ")
-    temp_usuario['password'] = input("Senha: ")
+    temp_usuario = {'nome': '', 'senha': ''}
+    temp_usuario['nome'] = input("Nome de usuário: ")
+    temp_usuario['senha'] = input("Senha: ")
     return temp_usuario
 
 
 # Função que confere se o login utilizado existe
 def check_usuario(usuarios, temp_usuario):
     for usuario in usuarios:
-        if usuario['username'] == temp_usuario['username']:
-            if usuario['password'] == temp_usuario['password']:
+        if usuario['nome'] == temp_usuario['nome']:
+            if usuario['senha'] == temp_usuario['senha']:
                 return usuario
             else:
                 print("Senha incorreta\n")
@@ -29,11 +31,12 @@ def check_usuario(usuarios, temp_usuario):
     print('Não há um usuário com esse nome\n')
 
 
-def check_isWorker(usuario):  # Função que confere se um usuário é funcionário
-    if usuario['isWorker'] == True:
-        return True
+def check_Worker(usuario):  # Função que confere se um usuário é funcionário
+
+    if usuario['tipo'] == "administrador":
+        MenuAdmin()
     else:
-        return False
+        pass
 
 
 def main():  # Função main que chama o menu
@@ -43,26 +46,16 @@ def main():  # Função main que chama o menu
 class FirstWindowFuncs():
     def login(self):
         usuarios: list = []
-        temp_usuario = {'username': '', 'password': ''}
-        with open("./usuario.json", "r") as f:
+        temp_usuario = {'nome': '', 'senha': ''}
+        with open("./usuarios.json", "r") as f:
             usuarios = json.load(f)
 
-        temp_usuario['username'] = self.nome_entry.get()
-        temp_usuario['password'] = self.senha_entry.get()
+        temp_usuario['nome'] = self.nome_entry.get()
+        temp_usuario['senha'] = self.senha_entry.get()
 
         usuario = check_usuario(usuarios, temp_usuario)
-
-        if check_isWorker(usuario):
-            funcionario = Funcionario(
-                usuario['username'], usuario['password'])
-            self.root.destroy()
-            AplicationWorker()
-            # menuWorker(funcionario)
-        else:
-            usuario = Usuario(usuario['username'], usuario['password'])
-            self.root.destroy()
-            Aplication()
-            # menuUsuario(usuario)
+        self.root.destroy()
+        check_Worker(usuario)
 
 
 class FirstWindow(FirstWindowFuncs):
