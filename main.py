@@ -4,10 +4,10 @@ from funcionarios.funcionario import Funcionario
 from admin.administrador import Administrador
 from admin.menuAdmin import MenuAdmin
 
-global dadosRoupas
+global dadosAnimias
 global dadosUsuario
 
-dadosRoupas = []
+dadosAnimias = []
 dadosUsuarios = []
 
 

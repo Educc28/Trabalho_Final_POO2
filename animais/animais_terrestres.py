@@ -1,4 +1,4 @@
-from animais import Animais
+from animais.animais import Animais
 
 
 class AnimalTerrestre(Animais):  # Classe referente a calças
