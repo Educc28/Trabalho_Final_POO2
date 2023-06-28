@@ -3,9 +3,13 @@ from tkinter import *
 from animais.animais_terrestres import AnimalTerrestre
 from animais.animais_aquaticos import AnimalAquatico
 from animais.animais_aves import AnimalAve
+from funcionarios.funcionario_terrestres import FuncionarioTerrestre
+from funcionarios.funcionario_aves import FuncionarioAve
+from funcionarios.funcionario_aquaticos import FuncionarioAquatico
+from admin.administrador import Administrador
+from veterinarios.veterinario import Veterinario
 from utilities import *
-# from utilities import *
-# from carro import Carro
+
 
 global dadosAnimais
 global dadosUsuarios
@@ -219,3 +223,188 @@ class AdminFun():  # Classe referente as funções do programa
         self.tipo_entry.delete(0, "end")
         self.qualidadeTemperatura_entry.delete(0, "end")
         self.codigo_entry.delete(0, "end")
+
+
+# ****************************************************************************
+
+
+    def lerJsonUsuarios(self):  # Lê todos os carros do JSON
+        global dadosUsuarios
+        with open("usuarios.json", "r") as f:
+            dadosUsuarios = json.load(f)
+        f.close
+
+    def RemoveTodosUsuarios(self):  # Remove os Usuarios do Treeview
+        for item in self.trv.get_children():
+            self.trv.delete(item)
+
+    def loadTrvUsuarios(self):  # Carrega dadosUsuarios para o Treeview
+        global dadosUsuarios
+
+        self.RemoveTodosUsuarios()
+
+        rowIndex = 1
+
+        for k in dadosUsuarios:
+            nome = k["nome"]
+            cpf = k["cpf"]
+            senha = k["senha"]
+            tipo = k["tipo"]
+
+            self.trv.insert('', index='end', iid=rowIndex, text="",
+                            values=(nome, cpf, senha, tipo))
+            rowIndex = rowIndex+1
+
+    def createUsuario(self):  # Cria um carro no JSON
+        self.usuarios = []
+        nome = self.nome_entry.get()
+        cpf = self.cpf_entry.get()
+        senha = self.senha_entry.get()
+        tipo = self.tipo_entry.get()
+
+        if tipo == "terrestre":
+            usuario = FuncionarioTerrestre(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioTerrestre(self.usuarios)
+
+        elif tipo == "ave":
+            usuario = FuncionarioAve(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAve(self.usuarios)
+
+        elif tipo == "aquatico":
+            usuario = FuncionarioAquatico(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAquatico(self.usuarios)
+
+        elif tipo == "administrador":
+            usuario = Administrador(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAdmin(self.usuarios)
+
+        elif tipo == "veterinario":
+            usuario = Veterinario(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioVeterinario(self.usuarios)
+
+        self.lerJsonUsuarios()
+        self.loadTrvUsuarios()
+        self.clearEntryUsuarios()
+
+    def deleteUsuario(self):  # Deleta um carro do JSON com base em seu código
+        todosUsuarios = []
+        nome = self.nome_entry.get()
+        with open("usuarios.json", "r") as r:
+            todosUsuarios = json.load(r)
+        with open("usuarios.json", "w+") as w:
+            for usuario in todosUsuarios:
+                if str(usuario["nome"]) == nome:
+                    todosUsuarios.remove(usuario)
+                    json.dump(todosUsuarios, w, cls=UUIDEncoder)
+
+        self.lerJsonUsuarios()
+        self.loadTrvUsuarios()
+        self.clearEntryUsuarios()
+
+    def editUsuario(self):  # Edita todas as informações de um carro, mantendo seu código
+        todosUsuarios = []
+        self.usuarios = []
+        nome = self.nome_entry.get()
+        cpf = self.cpf_entry.get()
+        senha = self.senha_entry.get()
+        tipo = self.tipo_entry.get()
+
+        selected_item = self.trv.selection()[0]
+
+        with open("usuarios.json", "r") as r:
+            todosUsuarios = json.load(r)
+        with open("usuarios.json", "w+") as w:
+            for usuario in todosUsuarios:
+                if str(usuario["nome"]) == nome:
+                    todosUsuarios.remove(usuario)
+                    json.dump(todosUsuarios, w, cls=UUIDEncoder)
+
+        self.trv.item(selected_item, values=(nome, cpf, senha, tipo))
+
+        if tipo == "terrestre":
+            usuario = FuncionarioTerrestre(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioTerrestre(self.usuarios)
+
+        elif tipo == "ave":
+            usuario = FuncionarioAve(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAve(self.usuarios)
+
+        elif tipo == "aquatico":
+            usuario = FuncionarioAquatico(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAquatico(self.usuarios)
+
+        elif tipo == "administrador":
+            usuario = Administrador(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioAdmin(self.usuarios)
+
+        elif tipo == "veterinario":
+            usuario = Veterinario(
+                nome, cpf, senha, tipo)
+            self.usuarios.append(usuario)
+            writeToFileFuncionarioVeterinario(self.usuarios)
+
+        self.lerJsonUsuarios()
+        self.loadTrvUsuarios()
+        self.clearEntryUsuarios()
+
+    # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
+    def buscarUsuario(self):
+        global dadosUsuarios
+        nome = self.nome_entry.get()
+        dadosUsuarios = []
+
+        if nome == "":
+            self.lerJsonUsuarios()
+            self.loadTrvUsuarios()
+            self.clearEntryUsuarios()
+        else:
+            todosUsuarios = []
+            with open("usuarios.json", "r") as f:
+                todosUsuarios = json.load(f)
+            f.close
+
+            for usuario in todosUsuarios:
+                if nome == usuario["nome"]:
+                    dadosUsuarios.append(usuario)
+
+        self.loadTrvUsuarios()
+        self.clearEntryUsuarios()
+
+    def mostrarUsuario(self):
+
+        selected_item = self.trv.selection()[0]
+        selected_values = self.trv.item(selected_item)
+
+        selected_item_nome = selected_values.get("values")[0]
+        selected_item_cpf = selected_values.get("values")[1]
+        selected_item_senha = selected_values.get("values")[2]
+        selected_item_tipo = selected_values.get("values")[3]
+
+        self.nome_entry.insert(0, selected_item_nome)
+        self.cpf_entry.insert(0, selected_item_cpf)
+        self.senha_entry.insert(0, selected_item_senha)
+        self.tipo_entry.insert(0, selected_item_tipo)
+
+    def clearEntryUsuarios(self):  # Limpa todas as Entries
+        self.nome_entry.delete(0, "end")
+        self.cpf_entry.delete(0, "end")
+        self.senha_entry.delete(0, "end")
+        self.tipo_entry.delete(0, "end")

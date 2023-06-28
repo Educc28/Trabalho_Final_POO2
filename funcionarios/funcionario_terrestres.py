@@ -1,4 +1,4 @@
-from funcionario import Funcionario
+from funcionarios.funcionario import Funcionario
 
 
 class FuncionarioTerrestre(Funcionario):  # Classe referente a calças

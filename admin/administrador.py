@@ -17,3 +17,19 @@ class Administrador(Funcionario):  # Classe referente a todos os carros
 
     def deleta_funcionario(self):
         pass
+
+    def to_string(self):
+        return f'''
+        nome: {self.nome}
+        cpf: {self.cpf} 
+        senha: {self.senha}
+        tipo: {self.tipo}
+    '''
+
+    def toJSON(self):
+        return {
+            'nome': self.nome,
+            'cpf': self.cpf,
+            'senha': self.senha,
+            'tipo': self.tipo,
+        }

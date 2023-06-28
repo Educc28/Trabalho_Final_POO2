@@ -1,7 +1,7 @@
-from funcionario import Funcionario
+from funcionarios.funcionario import Funcionario
 
 
-class FuncionarioTerrestre(Funcionario):  # Classe referente a calças
+class FuncionarioAve(Funcionario):  # Classe referente a calças
     def __init__(self, nome, cpf, senha, tipo):
         super().__init__(nome, cpf, senha, tipo)
         self.tipo = 'ave'

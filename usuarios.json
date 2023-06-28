@@ -1,1 +1,1 @@
-[{"nome": "adm", "cpf": "123.456.789-10", "senha": "adm", "tipo": "administrador"}]
+[{"nome": "adm", "cpf": "123.456.789-10", "senha": "adm", "tipo": "administrador"}, {"nome": "v", "cpf": "123.456.789-10", "senha": "v", "tipo": "veterinario"}, {"nome": "t", "cpf": "t", "senha": "t", "tipo": "terrestre"}, {"nome": "ave", "cpf": "asd", "senha": "ave", "tipo": "ave"}, {"nome": "aqua", "cpf": "aqua", "senha": "aqua", "tipo": "aquatico"}]

@@ -152,8 +152,8 @@ class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
         self.changeWindowButton()
         self.campos()
         self.lista()
-        self.lerJsonUsuario()
-        self.loadTrvUsuario()
+        self.lerJsonUsuarios()
+        self.loadTrvUsuarios()
         self.buttonsFrame()
         self.root.mainloop()
 
@@ -231,3 +231,11 @@ class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
         self.edit_Usuario_button = Button(
             self.frame2, text="Editar", command=self.editUsuario)
         self.edit_Usuario_button.place(relx=0.425, rely=0.55, anchor='w')
+
+        self.edit_Usuario_button = Button(
+            self.frame2, text="Buscar", command=self.buscarUsuario)
+        self.edit_Usuario_button.place(relx=0.425, rely=0.75, anchor='w')
+
+        self.edit_Usuario_button = Button(
+            self.frame2, text="Mostrar", command=self.mostrarUsuario)
+        self.edit_Usuario_button.place(relx=0.498, rely=0.75, anchor='w')

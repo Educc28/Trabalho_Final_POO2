@@ -20,3 +20,19 @@ class Veterinario(Funcionario):  # Classe referente a todos os carros
 
     def alimenta_aquatico(self):
         pass
+
+        def to_string(self):
+            return f'''
+            nome: {self.nome}
+            cpf: {self.cpf} 
+            senha: {self.senha}
+            tipo: {self.tipo}
+        '''
+
+    def toJSON(self):
+        return {
+            'nome': self.nome,
+            'cpf': self.cpf,
+            'senha': self.senha,
+            'tipo': self.tipo,
+        }
