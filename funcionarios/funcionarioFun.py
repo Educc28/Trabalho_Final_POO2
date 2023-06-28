@@ -153,7 +153,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
             animal = AnimalAquatico(nome, idade, dieta, sexo, porte, limpo,
                                     saude, tipo, qualidadeTemperatura, codigo)
             self.animais.append(animal)
-            writeToFileAnimaisAves(self.animais)
+            writeToFileAnimaisAquaticos(self.animais)
             self.lerJsonAnimais()
             self.loadTrvAnimaisAquaticos()
 
@@ -208,7 +208,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
             animal = AnimalAquatico(nome, idade, dieta, sexo, porte, limpo,
                                     saude, tipo, qualidadeTemperatura, codigo)
             self.animais.append(animal)
-            writeToFileAnimaisAves(self.animais)
+            writeToFileAnimaisAquaticos(self.animais)
             self.lerJsonAnimais()
             self.loadTrvAnimaisAquaticos()
 
@@ -251,6 +251,53 @@ class FuncionarioFun():  # Classe referente as funções do programa
             self.lerJsonAnimais()
             self.loadTrvAnimaisTerrestres()
 
+        elif tipo == "ave":
+            animal = AnimalAve(nome, idade, dieta, sexo, porte, limpo,
+                               saude, tipo, qualidadeTemperatura, codigo)
+            self.animais.append(animal)
+            writeToFileAnimaisAves(self.animais)
+            self.lerJsonAnimais()
+            self.loadTrvAnimaisAves()
+
+    def ajustaTemperatura(self):
+        todosAnimais = []
+        self.animais = []
+
+        selected_item = self.trv.selection()[0]
+        selected_values = self.trv.item(selected_item)
+
+        nome = selected_values.get("values")[0]
+        idade = selected_values.get("values")[1]
+        dieta = selected_values.get("values")[2]
+        sexo = selected_values.get("values")[3]
+        porte = selected_values.get("values")[4]
+        limpo = selected_values.get("values")[5]
+        saude = selected_values.get("values")[6]
+        tipo = selected_values.get("values")[7]
+        qualidadeTemperatura = self.temperatura_entry.get()
+
+        codigo = selected_values.get("values")[9]
+
+        with open("animais.json", "r") as r:
+            todosAnimais = json.load(r)
+        with open("animais.json", "w+") as w:
+            for animal in todosAnimais:
+                if str(animal["codigo"]) == codigo:
+                    todosAnimais.remove(animal)
+                    json.dump(todosAnimais, w, cls=UUIDEncoder)
+
+        self.trv.item(selected_item, values=(
+            nome, idade, dieta, sexo, porte, limpo, saude, tipo, qualidadeTemperatura, codigo))
+
+        if tipo == "aquatico":
+            animal = AnimalAquatico(nome, idade, dieta, sexo, porte, limpo,
+                                    saude, tipo, qualidadeTemperatura, codigo)
+            self.animais.append(animal)
+            writeToFileAnimaisAquaticos(self.animais)
+            self.lerJsonAnimais()
+            self.loadTrvAnimaisAquaticos()
+            self.temperatura_entry.delete(0, "end")
+
     # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
 
     def buscarAnimalTerrestre(self):
@@ -273,6 +320,50 @@ class FuncionarioFun():  # Classe referente as funções do programa
                     dadosAnimais.append(animal)
 
         self.loadTrvAnimaisTerrestres()
+        self.clearEntry()
+
+    def buscarAnimalAve(self):
+        global dadosAnimais
+        nome = self.nome_entry.get()
+        dadosAnimais = []
+
+        if nome == "":
+            self.lerJsonAnimais()
+            self.loadTrvAnimaisAves()
+            self.clearEntry()
+        else:
+            todosAnimais = []
+            with open("animais.json", "r") as f:
+                todosAnimais = json.load(f)
+            f.close
+
+            for animal in todosAnimais:
+                if nome == animal["nome"]:
+                    dadosAnimais.append(animal)
+
+        self.loadTrvAnimaisAves()
+        self.clearEntry()
+
+    def buscarAnimalAquaticos(self):
+        global dadosAnimais
+        nome = self.nome_entry.get()
+        dadosAnimais = []
+
+        if nome == "":
+            self.lerJsonAnimais()
+            self.loadTrvAnimaisAquaticos()
+            self.clearEntry()
+        else:
+            todosAnimais = []
+            with open("animais.json", "r") as f:
+                todosAnimais = json.load(f)
+            f.close
+
+            for animal in todosAnimais:
+                if nome == animal["nome"]:
+                    dadosAnimais.append(animal)
+
+        self.loadTrvAnimaisAquaticos()
         self.clearEntry()
 
     def clearEntry(self):  # Limpa todas as Entries
