@@ -185,7 +185,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.clearEntry()
 
     def mostrarAnimal(self):
-
+        self.clearEntry()
         selected_item = self.trv.selection()[0]
         selected_values = self.trv.item(selected_item)
 
@@ -389,7 +389,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.clearEntryUsuarios()
 
     def mostrarUsuario(self):
-
+        self.clearEntryUsuarios()
         selected_item = self.trv.selection()[0]
         selected_values = self.trv.item(selected_item)
 

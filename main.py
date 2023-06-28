@@ -2,6 +2,7 @@ import json
 from tkinter import *
 from funcionarios.funcionario import Funcionario
 from admin.administrador import Administrador
+from funcionarios.menuTerrestre import MenuTerrestre
 from admin.menuAdmin import MenuAdmin
 
 global dadosAnimias
@@ -35,7 +36,13 @@ def check_Worker(usuario):  # Função que confere se um usuário é funcionári
 
     if usuario['tipo'] == "administrador":
         MenuAdmin()
-    else:
+    elif usuario['tipo'] == "terrestre":
+        MenuTerrestre()
+    elif usuario['tipo'] == "ave":
+        pass
+    elif usuario['tipo'] == "aquatico":
+        pass
+    elif usuario['tipo'] == "veterinario":
         pass
 
 

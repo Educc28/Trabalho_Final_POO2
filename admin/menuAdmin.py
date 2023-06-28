@@ -59,11 +59,12 @@ class MenuAdmin(AdminFun):  # Classe referente a tela
         self.trv.column("#1", anchor="w", width=100, stretch=True)
         self.trv.column("#2", anchor="w", width=100, stretch=True)
         self.trv.column("#3", anchor="w", width=100, stretch=True)
+        self.trv.column("#4", anchor="w", width=100, stretch=True)
         self.trv.column("#5", anchor="w", width=100, stretch=True)
         self.trv.column("#6", anchor="w", width=100, stretch=True)
         self.trv.column("#7", anchor="w", width=100, stretch=True)
         self.trv.column("#8", anchor="w", width=100, stretch=True)
-        self.trv.column("#9", anchor="w", width=100, stretch=True)
+        self.trv.column("#9", anchor="w", width=150, stretch=True)
         self.trv.column("#10", anchor="w", width=250, stretch=True)
 
         self.trv.place(relx=0, rely=0)
