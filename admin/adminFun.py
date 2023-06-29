@@ -17,12 +17,12 @@ dadosAnimais = []
 dadosUsuarios = []
 
 
-class AdminFun():  # Classe referente as funções do programa
+class AdminFun():  # Classe referente as funções do admin
     def __init__(self):
         self.Animais = []
         self.Usuarios = []
 
-    def lerJsonAnimais(self):  # Lê todos os carros do JSON
+    def lerJsonAnimais(self):  # Lê todos os animais do JSON
         global dadosAnimais
         with open("animais.json", "r") as f:
             dadosAnimais = json.load(f)
@@ -32,7 +32,7 @@ class AdminFun():  # Classe referente as funções do programa
         for item in self.trv.get_children():
             self.trv.delete(item)
 
-    def loadTrvAnimais(self):  # Carrega dadosAnimais para o Treeview
+    def loadTrvAnimais(self):  # Carrega Animais para o Treeview
         global dadosAnimais
 
         self.RemoveTodosAnimais()
@@ -62,7 +62,7 @@ class AdminFun():  # Classe referente as funções do programa
                             values=(nome, idade, dieta, sexo, porte, limpo, saude, tipo, especial, codigo))
             rowIndex = rowIndex+1
 
-    def createAnimal(self):  # Cria um carro no JSON
+    def createAnimal(self):  # Cria um animal no JSON
         self.animais = []
         nome = self.nome_entry.get()
         idade = self.idade_entry.get()
@@ -96,7 +96,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvAnimais()
         self.clearEntry()
 
-    def deleteAnimal(self):  # Deleta um carro do JSON com base em seu código
+    def deleteAnimal(self):  # Deleta um animal do JSON com base em seu código
         todosAnimais = []
         codigo = self.codigo_entry.get()
         with open("animais.json", "r") as r:
@@ -111,7 +111,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvAnimais()
         self.clearEntry()
 
-    def editAnimal(self):  # Edita todas as informações de um carro, mantendo seu código
+    def editAnimal(self):  # Edita todas as informações de um animal, mantendo seu código
         todosAnimais = []
         self.animais = []
         nome = self.nome_entry.get()
@@ -155,13 +155,13 @@ class AdminFun():  # Classe referente as funções do programa
             animal = AnimalAquatico(nome, idade, dieta, sexo, porte, limpo,
                                     saude, tipo, qualidadeTemperatura, codigo)
             self.animais.append(animal)
-            writeToFileAnimaisAves(self.animais)
+            writeToFileAnimaisAquaticos(self.animais)
 
         self.lerJsonAnimais()
         self.loadTrvAnimais()
         self.clearEntry()
 
-    # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
+    # Mostra no Treeview todos os animais de um nome determinado pelo usuário
     def buscarAnimal(self):
         global dadosAnimais
         nome = self.nome_entry.get()
@@ -184,7 +184,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvAnimais()
         self.clearEntry()
 
-    def mostrarAnimal(self):
+    def mostrarAnimal(self):  # Coloca as informações do animal selecionado no Treeview
         self.clearEntry()
         selected_item = self.trv.selection()[0]
         selected_values = self.trv.item(selected_item)
@@ -228,7 +228,7 @@ class AdminFun():  # Classe referente as funções do programa
 # ****************************************************************************
 
 
-    def lerJsonUsuarios(self):  # Lê todos os carros do JSON
+    def lerJsonUsuarios(self):  # Lê todos os usuarios do JSON
         global dadosUsuarios
         with open("usuarios.json", "r") as f:
             dadosUsuarios = json.load(f)
@@ -238,7 +238,7 @@ class AdminFun():  # Classe referente as funções do programa
         for item in self.trv.get_children():
             self.trv.delete(item)
 
-    def loadTrvUsuarios(self):  # Carrega dadosUsuarios para o Treeview
+    def loadTrvUsuarios(self):  # Carrega Usuarios para o Treeview
         global dadosUsuarios
 
         self.RemoveTodosUsuarios()
@@ -255,7 +255,7 @@ class AdminFun():  # Classe referente as funções do programa
                             values=(nome, cpf, senha, tipo))
             rowIndex = rowIndex+1
 
-    def createUsuario(self):  # Cria um carro no JSON
+    def createUsuario(self):  # Cria um usuario no JSON
         self.usuarios = []
         nome = self.nome_entry.get()
         cpf = self.cpf_entry.get()
@@ -296,7 +296,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvUsuarios()
         self.clearEntryUsuarios()
 
-    def deleteUsuario(self):  # Deleta um carro do JSON com base em seu código
+    def deleteUsuario(self):  # Deleta um usuario do JSON com base em seu nome
         todosUsuarios = []
         nome = self.nome_entry.get()
         with open("usuarios.json", "r") as r:
@@ -311,7 +311,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvUsuarios()
         self.clearEntryUsuarios()
 
-    def editUsuario(self):  # Edita todas as informações de um carro, mantendo seu código
+    def editUsuario(self):  # Edita todas as informações de um usuario, mantendo seu código
         todosUsuarios = []
         self.usuarios = []
         nome = self.nome_entry.get()
@@ -365,7 +365,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvUsuarios()
         self.clearEntryUsuarios()
 
-    # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
+    # Mostra no Treeview todos os usuario de um nome determinado pelo usuário
     def buscarUsuario(self):
         global dadosUsuarios
         nome = self.nome_entry.get()
@@ -388,7 +388,7 @@ class AdminFun():  # Classe referente as funções do programa
         self.loadTrvUsuarios()
         self.clearEntryUsuarios()
 
-    def mostrarUsuario(self):
+    def mostrarUsuario(self):  # Mostra nas entries, as informações selecionadas de um usuario
         self.clearEntryUsuarios()
         selected_item = self.trv.selection()[0]
         selected_values = self.trv.item(selected_item)

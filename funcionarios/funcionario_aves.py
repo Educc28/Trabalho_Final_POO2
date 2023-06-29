@@ -1,22 +1,10 @@
 from funcionarios.funcionario import Funcionario
 
 
-class FuncionarioAve(Funcionario):  # Classe referente a calças
+class FuncionarioAve(Funcionario):  # Classe referente a funcionarios aves
     def __init__(self, nome, cpf, senha, tipo):
         super().__init__(nome, cpf, senha, tipo)
         self.tipo = 'ave'
-
-    def limpa_ave(self):
-        pass
-
-    def ajusta_ninho(self):
-        pass
-
-    def alimenta_ave(self):
-        pass
-
-    def ver_aves(self):
-        pass
 
     def to_string(self):
         return f'''

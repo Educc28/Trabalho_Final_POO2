@@ -3,7 +3,7 @@ from tkinter import ttk
 from funcionarios.funcionarioFun import FuncionarioFun
 
 
-class MenuAquatico(FuncionarioFun):  # Classe referente a tela
+class MenuAquatico(FuncionarioFun):  # Classe referente a tela do funcionario aquatico
     def __init__(self):
         self.animais = []
         self.root = Tk()
@@ -28,7 +28,7 @@ class MenuAquatico(FuncionarioFun):  # Classe referente a tela
         self.frame2 = Frame(self.root)
         self.frame2.place(relx=0.02, rely=0.5, relwidth=0.96, relheight=0.48)
 
-    def lista(self):  # Cria o Treeview para visualizar todos os carros
+    def lista(self):  # Cria o Treeview para visualizar todos os animais aquaticos
         self.trv = ttk.Treeview(self.frame2,
                                 columns=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), show="headings", height="16")
 

@@ -19,7 +19,7 @@ class UUIDEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-# Função que escreve uma roupa no jscon
+# Função que escreve um animal terrestre no json
 def writeToFileAnimaisTerrestres(animais):
     todosAnimais = []
     animais_json = []
@@ -34,7 +34,7 @@ def writeToFileAnimaisTerrestres(animais):
         json.dump(todosAnimais, f, cls=UUIDEncoder)
 
 
-# Função que escreve uma roupa no jscon
+# Função que escreve um animal ave no json
 def writeToFileAnimaisAves(animais):
     todosAnimais = []
     animais_json = []
@@ -49,7 +49,7 @@ def writeToFileAnimaisAves(animais):
         json.dump(todosAnimais, f, cls=UUIDEncoder)
 
 
-# Função que escreve uma roupa no jscon
+# Função que escreve um animal aquatico no json
 def writeToFileAnimaisAquaticos(animais):
     todosAnimais = []
     animais_json = []
@@ -63,9 +63,8 @@ def writeToFileAnimaisAquaticos(animais):
         todosAnimais.append(animais_json[0])
         json.dump(todosAnimais, f, cls=UUIDEncoder)
 
-# Função que escreve uma roupa no jscon
 
-
+# Função que escreve um funcionario terrestre no json
 def writeToFileFuncionarioTerrestre(usuarios):
     todosFuncionarios = []
     funcionarios_json = []
@@ -80,7 +79,7 @@ def writeToFileFuncionarioTerrestre(usuarios):
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
 
 
-# Função que escreve uma roupa no jscon
+# Função que escreve um funcionario ave no json
 def writeToFileFuncionarioAve(usuarios):
     todosFuncionarios = []
     funcionarios_json = []
@@ -95,7 +94,7 @@ def writeToFileFuncionarioAve(usuarios):
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
 
 
-# Função que escreve uma roupa no jscon
+# Função que escreve um funcionario aquatico no json
 def writeToFileFuncionarioAquatico(usuarios):
     todosFuncionarios = []
     funcionarios_json = []
@@ -108,7 +107,8 @@ def writeToFileFuncionarioAquatico(usuarios):
             funcionarios_json.append(FuncionarioAquatico.toJSON(funcionario))
         todosFuncionarios.append(funcionarios_json[0])
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
-# Função que escreve uma roupa no jscon
+
+# Função que escreve um funcionario administrador no json
 
 
 def writeToFileFuncionarioAdmin(usuarios):
@@ -124,9 +124,8 @@ def writeToFileFuncionarioAdmin(usuarios):
         todosFuncionarios.append(funcionarios_json[0])
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
 
-# Função que escreve uma roupa no jscon
 
-
+# Função que escreve um veterinario no json
 def writeToFileFuncionarioVeterinario(usuarios):
     todosFuncionarios = []
     funcionarios_json = []
@@ -141,12 +140,10 @@ def writeToFileFuncionarioVeterinario(usuarios):
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
 
 
+# Função que escreve a ultima consulta no json
+
 def writeToFileUltimaConsulta(consultas, todasConsultas):
     consultas_json = []
-
-    # with open("ultimaConsulta.json", "r") as r:
-    #     print(todasConsultas)
-    #     todasConsultas = json.load(r)
 
     with open("ultimaConsulta.json", "w+") as f:
         for consulta in consultas:

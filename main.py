@@ -1,13 +1,10 @@
 import json
 from tkinter import *
-from funcionarios.funcionario import Funcionario
-from admin.administrador import Administrador
 from funcionarios.menuTerrestre import MenuTerrestre
 from funcionarios.menuAve import MenuAve
 from funcionarios.menuAquatico import MenuAquatico
 from veterinarios.menuVet import MenuVet
 from admin.menuAdmin import MenuAdmin
-from veterinarios.ultimaConsulta import ultimaConsulta
 
 
 nomeVet = ''
@@ -17,16 +14,9 @@ remedio = ''
 dadosAnimias = []
 dadosUsuarios = []
 
-
-def login_text():  # Função referente ao texto que será retornado quando um usuário tentar fazer login
-    print("Por favor, faça o login.")
-    temp_usuario = {'nome': '', 'senha': ''}
-    temp_usuario['nome'] = input("Nome de usuário: ")
-    temp_usuario['senha'] = input("Senha: ")
-    return temp_usuario
-
-
 # Função que confere se o login utilizado existe
+
+
 def check_usuario(usuarios, temp_usuario):
     for usuario in usuarios:
         if usuario['nome'] == temp_usuario['nome']:
@@ -38,10 +28,7 @@ def check_usuario(usuarios, temp_usuario):
     print('Não há um usuário com esse nome\n')
 
 
-def check_Worker(usuario):  # Função que confere se um usuário é funcionário
-    global nomeVet
-    global cpfVet
-
+def check_Worker(usuario):  # Função que confere a função de um usuario
     if usuario['tipo'] == "administrador":
         MenuAdmin()
     elif usuario['tipo'] == "terrestre":
@@ -58,7 +45,7 @@ def main():  # Função main que chama o menu
     FirstWindow()
 
 
-class FirstWindowFuncs():
+class FirstWindowFuncs():  # Classe referente as funções da tela de login
     def login(self):
         usuarios: list = []
         temp_usuario = {'nome': '', 'senha': ''}
@@ -73,7 +60,7 @@ class FirstWindowFuncs():
         check_Worker(usuario)
 
 
-class FirstWindow(FirstWindowFuncs):
+class FirstWindow(FirstWindowFuncs):  # Tela de login
     def __init__(self):
         self.root = Tk()
         self.tela()

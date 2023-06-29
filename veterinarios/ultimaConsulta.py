@@ -1,4 +1,4 @@
-class ultimaConsulta():  # Classe referente a todas as roupas
+class ultimaConsulta():  # Classe referente a todas as consultas
     def __init__(self, nome, data, vetNome, cpfVet, remedio):
         self.nome = nome
         self.data = data

@@ -12,12 +12,12 @@ dadosAnimais = []
 dadosUsuarios = []
 
 
-class VetFun():  # Classe referente as funções do programa
+class VetFun():  # Classe referente as funções do programa do veterinario
     def __init__(self):
         self.Animais = []
         self.Usuarios = []
 
-    def lerJsonAnimais(self):  # Lê todos os carros do JSON
+    def lerJsonAnimais(self):  # Lê todos os animais do JSON
         global dadosAnimais
         with open("animais.json", "r") as f:
             dadosAnimais = json.load(f)
@@ -27,7 +27,7 @@ class VetFun():  # Classe referente as funções do programa
         for item in self.trv.get_children():
             self.trv.delete(item)
 
-    def loadTrvAnimais(self):  # Carrega dadosAnimais para o Treeview
+    def loadTrvAnimais(self):  # Carrega Animais para o Treeview
         global dadosAnimais
 
         self.RemoveTodosAnimais()
@@ -57,9 +57,7 @@ class VetFun():  # Classe referente as funções do programa
                             values=(nome, idade, dieta, sexo, porte, limpo, saude, tipo, especial, codigo))
             rowIndex = rowIndex+1
 
-    def pegarConsulta(self):
-        pass
-
+    # Faz com que os animais selecionados fiquem saudaveis e salva as informações no json da ultima consulta
     def cuidarAnimal(self):
 
         todosAnimais = []
@@ -127,7 +125,7 @@ class VetFun():  # Classe referente as funções do programa
         self.consulta.append(consulta)
         writeToFileUltimaConsulta(self.consulta, todasConsultas)
 
-    def alimentaAnimal(self):
+    def alimentaAnimal(self):  # Alimenta os animais selecionados
         todosAnimais = []
         self.animais = []
 
@@ -178,7 +176,7 @@ class VetFun():  # Classe referente as funções do programa
         self.loadTrvAnimais()
         self.clearEntry()
 
-    # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
+    # Mostra no Treeview todos os animais de um nome determinado pelo usuário
 
     def buscarAnimal(self):
         global dadosAnimais
@@ -202,5 +200,5 @@ class VetFun():  # Classe referente as funções do programa
         self.loadTrvAnimais()
         self.clearEntry()
 
-    def clearEntry(self):  # Limpa todas as Entries
+    def clearEntry(self):  # Limpa a entry do nome
         self.nome_entry.delete(0, "end")

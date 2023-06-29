@@ -12,12 +12,12 @@ dadosAnimais = []
 dadosUsuarios = []
 
 
-class FuncionarioFun():  # Classe referente as funções do programa
+class FuncionarioFun():  # Classe referente as funções do programa dos funcionarios
     def __init__(self):
         self.Animais = []
         self.Usuarios = []
 
-    def lerJsonAnimais(self):  # Lê todos os carros do JSON
+    def lerJsonAnimais(self):  # Lê todos os animais do JSON
         global dadosAnimais
         with open("animais.json", "r") as f:
             dadosAnimais = json.load(f)
@@ -27,7 +27,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
         for item in self.trv.get_children():
             self.trv.delete(item)
 
-    def loadTrvAnimaisTerrestres(self):  # Carrega dadosAnimais para o Treeview
+    def loadTrvAnimaisTerrestres(self):  # Carrega Animais para o Treeview
         global dadosAnimais
 
         self.RemoveTodosAnimais()
@@ -51,12 +51,8 @@ class FuncionarioFun():  # Classe referente as funções do programa
                 self.trv.insert('', index='end', iid=rowIndex, text="",
                                 values=(nome, idade, dieta, sexo, porte, limpo, saude, tipo, especial, codigo))
                 rowIndex = rowIndex+1
-            # elif tipo == "ave":
-            #     especial = k["qualidade_ninho"]
-            # else:
-            #     especial = k["temperatura_atual"]
 
-    def loadTrvAnimaisAves(self):  # Carrega dadosAnimais para o Treeview
+    def loadTrvAnimaisAves(self):  # Carrega Animais para o Treeview
         global dadosAnimais
 
         self.RemoveTodosAnimais()
@@ -80,7 +76,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
                                 values=(nome, idade, dieta, sexo, porte, limpo, saude, tipo, especial, codigo))
                 rowIndex = rowIndex+1
 
-    def loadTrvAnimaisAquaticos(self):  # Carrega dadosAnimais para o Treeview
+    def loadTrvAnimaisAquaticos(self):  # Carrega Animais para o Treeview
         global dadosAnimais
 
         self.RemoveTodosAnimais()
@@ -104,7 +100,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
                                 values=(nome, idade, dieta, sexo, porte, limpo, saude, tipo, especial, codigo))
                 rowIndex = rowIndex+1
 
-    def limpaAnimal(self):
+    def limpaAnimal(self):  # Faz com que os animais selecionados fiquem limpos
         todosAnimais = []
         self.animais = []
 
@@ -159,7 +155,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
 
         self.clearEntry()
 
-    def alimentaAnimal(self):
+    def alimentaAnimal(self):  # Faz com que os animais selecionados fiquem alimentados
         todosAnimais = []
         self.animais = []
 
@@ -214,7 +210,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
 
         self.clearEntry()
 
-    def ajustaSolo(self):
+    def ajustaSolo(self):  # Arruma o solo dos animais selecionados
         todosAnimais = []
         self.animais = []
 
@@ -259,7 +255,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
             self.lerJsonAnimais()
             self.loadTrvAnimaisAves()
 
-    def ajustaTemperatura(self):
+    def ajustaTemperatura(self):  # Ajusta a temperatura dos animais selecionados
         todosAnimais = []
         self.animais = []
 
@@ -298,9 +294,9 @@ class FuncionarioFun():  # Classe referente as funções do programa
             self.loadTrvAnimaisAquaticos()
             self.temperatura_entry.delete(0, "end")
 
-    # Mostra no Treeview todos os carros de uma marca determinada pelo usuário
-
+    # Mostra no Treeview todos os animais com um nome determinado pelo usuário
     def buscarAnimalTerrestre(self):
+
         global dadosAnimais
         nome = self.nome_entry.get()
         dadosAnimais = []
@@ -322,6 +318,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
         self.loadTrvAnimaisTerrestres()
         self.clearEntry()
 
+    # Mostra no Treeview todos os animais com um nome determinado pelo usuário
     def buscarAnimalAve(self):
         global dadosAnimais
         nome = self.nome_entry.get()
@@ -344,6 +341,7 @@ class FuncionarioFun():  # Classe referente as funções do programa
         self.loadTrvAnimaisAves()
         self.clearEntry()
 
+    # Mostra no Treeview todos os animais com um nome determinado pelo usuário
     def buscarAnimalAquaticos(self):
         global dadosAnimais
         nome = self.nome_entry.get()

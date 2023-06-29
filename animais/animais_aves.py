@@ -1,7 +1,7 @@
 from animais.animais import Animais
 
 
-class AnimalAve(Animais):  # Classe referente a calças
+class AnimalAve(Animais):  # Classe referente a animais aves
     def __init__(self, nome, idade, dieta, sexo, porte, limpo, saude, tipo, qualidade_ninho, codigo=None):
         super().__init__(nome, idade, dieta, sexo, porte, limpo, saude, tipo)
         self.tipo = 'ave'

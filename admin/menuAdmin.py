@@ -3,7 +3,7 @@ from tkinter import ttk
 from admin.adminFun import AdminFun
 
 
-class MenuAdmin(AdminFun):  # Classe referente a tela
+class MenuAdmin(AdminFun):  # Classe referente a tela do admin
     def __init__(self):
         self.animais = []
         self.root = Tk()
@@ -32,16 +32,16 @@ class MenuAdmin(AdminFun):  # Classe referente a tela
         self.frame3 = Frame(self.root)
         self.frame3.place(relx=0.02, rely=0.63, relwidth=0.97, relheight=0.35)
 
-    def changeWindowButton(self):
+    def changeWindowButton(self):  # Botao para trocar de tela
         self.changeButton = Button(
             self.frame1, text="Ver Usuarios", command=self.changeWindow)
         self.changeButton.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-    def changeWindow(self):
+    def changeWindow(self):  # Troca de tela
         self.root.destroy()
         MenuAdminWorker()
 
-    def lista(self):  # Cria o Treeview para visualizar todos os carros
+    def lista(self):  # Cria o Treeview para visualizar todos os animais
         self.trv = ttk.Treeview(self.frame3,
                                 columns=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), show="headings", height="16")
 
@@ -144,7 +144,8 @@ class MenuAdmin(AdminFun):  # Classe referente a tela
         self.edit_Animal_button.place(relx=0.498, rely=0.7, anchor='w')
 
 
-class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
+# Classe referente a tela do admin, sobre os usuarios
+class MenuAdminWorker(MenuAdmin):
     def __init__(self):
         self.usuarios = []
         self.root = Tk()
@@ -161,7 +162,7 @@ class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
     def tela(self):  # Cria a tela
         self.root.title("Tela Admin")
         self.root.configure(background='gray')
-        self.root.geometry("1200x600")
+        self.root.geometry("500x600")
 
     def framesTela(self):  # Cria os frames para a tela
         self.frame1 = Frame(self.root)
@@ -182,7 +183,7 @@ class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
         self.root.destroy()
         MenuAdmin()
 
-    def lista(self):  # Cria o Treeview para visualizar todos os carros
+    def lista(self):  # Cria o Treeview para visualizar todos os usuarios
         self.trv = ttk.Treeview(self.frame3,
                                 columns=(1, 2, 3, 4), show="headings", height="16")
 
@@ -203,40 +204,40 @@ class MenuAdminWorker(MenuAdmin):  # Classe referente a tela
             self.frame2, text="Nome:", anchor='w')
         self.nome_label.place(relx=0, rely=0)
         self.nome_entry = Entry(self.frame2)
-        self.nome_entry.place(relx=0.07, rely=0.01)
+        self.nome_entry.place(relx=0.1, rely=0.01)
 
         self.cpf_label = Label(self.frame2, text="CPF:", anchor='w')
-        self.cpf_label.place(relx=0.2, rely=0)
+        self.cpf_label.place(relx=0.38, rely=0)
         self.cpf_entry = Entry(self.frame2)
-        self.cpf_entry.place(relx=0.25, rely=0.01)
+        self.cpf_entry.place(relx=0.45, rely=0.01)
 
         self.senha_label = Label(self.frame2, text="Senha:", anchor='w')
-        self.senha_label.place(relx=0.38, rely=0)
+        self.senha_label.place(relx=0, rely=0.25)
         self.senha_entry = Entry(self.frame2)
-        self.senha_entry.place(relx=0.42, rely=0.01)
+        self.senha_entry.place(relx=0.11, rely=0.26)
 
         self.tipo_label = Label(self.frame2, text="Tipo:", anchor='w')
-        self.tipo_label.place(relx=0.55, rely=0)
+        self.tipo_label.place(relx=0.38, rely=0.25)
         self.tipo_entry = Entry(self.frame2)
-        self.tipo_entry.place(relx=0.59, rely=0.01)
+        self.tipo_entry.place(relx=0.45, rely=0.26)
 
     def buttonsFrame(self):  # Cria os botões da tela
         self.createUsuario_button = Button(
             self.frame2, text="Create", command=self.createUsuario)
-        self.createUsuario_button.place(relx=0.46, rely=0.55, anchor='w')
+        self.createUsuario_button.place(relx=0.5, rely=0.55, anchor='w')
 
         self.deleteUsuario_button = Button(
             self.frame2, text="Delete", command=self.deleteUsuario)
-        self.deleteUsuario_button.place(relx=0.498, rely=0.55, anchor='w')
+        self.deleteUsuario_button.place(relx=0.4, rely=0.55, anchor='w')
 
         self.edit_Usuario_button = Button(
             self.frame2, text="Editar", command=self.editUsuario)
-        self.edit_Usuario_button.place(relx=0.425, rely=0.55, anchor='w')
+        self.edit_Usuario_button.place(relx=0.3, rely=0.55, anchor='w')
 
         self.edit_Usuario_button = Button(
             self.frame2, text="Buscar", command=self.buscarUsuario)
-        self.edit_Usuario_button.place(relx=0.425, rely=0.75, anchor='w')
+        self.edit_Usuario_button.place(relx=0.3, rely=0.75, anchor='w')
 
         self.edit_Usuario_button = Button(
             self.frame2, text="Mostrar", command=self.mostrarUsuario)
-        self.edit_Usuario_button.place(relx=0.498, rely=0.75, anchor='w')
+        self.edit_Usuario_button.place(relx=0.4, rely=0.75, anchor='w')
