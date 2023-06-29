@@ -5,11 +5,15 @@ from admin.administrador import Administrador
 from funcionarios.menuTerrestre import MenuTerrestre
 from funcionarios.menuAve import MenuAve
 from funcionarios.menuAquatico import MenuAquatico
+from veterinarios.menuVet import MenuVet
 from admin.menuAdmin import MenuAdmin
+from veterinarios.ultimaConsulta import ultimaConsulta
 
-global dadosAnimias
-global dadosUsuario
 
+nomeVet = ''
+cpfVet = ''
+data = ''
+remedio = ''
 dadosAnimias = []
 dadosUsuarios = []
 
@@ -35,6 +39,8 @@ def check_usuario(usuarios, temp_usuario):
 
 
 def check_Worker(usuario):  # Função que confere se um usuário é funcionário
+    global nomeVet
+    global cpfVet
 
     if usuario['tipo'] == "administrador":
         MenuAdmin()
@@ -45,7 +51,7 @@ def check_Worker(usuario):  # Função que confere se um usuário é funcionári
     elif usuario['tipo'] == "aquatico":
         MenuAquatico()
     elif usuario['tipo'] == "veterinario":
-        pass
+        MenuVet()
 
 
 def main():  # Função main que chama o menu

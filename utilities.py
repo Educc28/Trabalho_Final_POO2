@@ -8,6 +8,7 @@ from funcionarios.funcionario_aves import FuncionarioAve
 from funcionarios.funcionario_aquaticos import FuncionarioAquatico
 from admin.administrador import Administrador
 from veterinarios.veterinario import Veterinario
+from veterinarios.ultimaConsulta import ultimaConsulta
 
 
 class UUIDEncoder(json.JSONEncoder):
@@ -138,3 +139,17 @@ def writeToFileFuncionarioVeterinario(usuarios):
             funcionarios_json.append(Veterinario.toJSON(funcionario))
         todosFuncionarios.append(funcionarios_json[0])
         json.dump(todosFuncionarios, f, cls=UUIDEncoder)
+
+
+def writeToFileUltimaConsulta(consultas, todasConsultas):
+    consultas_json = []
+
+    # with open("ultimaConsulta.json", "r") as r:
+    #     print(todasConsultas)
+    #     todasConsultas = json.load(r)
+
+    with open("ultimaConsulta.json", "w+") as f:
+        for consulta in consultas:
+            consultas_json.append(ultimaConsulta.toJSONConsulta(consulta))
+        todasConsultas.append(consultas_json[0])
+        json.dump(todasConsultas, f, cls=UUIDEncoder)
