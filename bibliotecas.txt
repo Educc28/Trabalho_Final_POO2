@@ -1,7 +1,0 @@
-Programa testado em Python 3.10.4 em Windows 10
-
-Bibliotecas utilizadas:
-    - json
-    - tkinter
-    - uuid
-    
